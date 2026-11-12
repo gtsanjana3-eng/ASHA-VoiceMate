@@ -1,0 +1,29 @@
+# Secrets - never commit (only .env.example with placeholders is shared)
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# Local data: database, test audio, any recordings
+data/*
+!data/.gitkeep
+*.db
+*.db-journal
+*.wav
+*.mp3
+*.webm
+*.ogg
+
+# Editors / tools / OS
+.vscode/
+.idea/
+.claude/
+Thumbs.db
+.DS_Store
+desktop.ini

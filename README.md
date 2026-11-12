@@ -55,7 +55,7 @@ flowchart LR
 **One spoken turn:** mic → WAV → **Gnani Prisma STT** → transcript → agent extracts fields + rules engine checks danger signs → if danger: alert text → **Gnani Timbre TTS** spoken first → read-back → **Gnani Timbre TTS** → worker corrects or says “yes” → saved to SQLite + follow-ups updated.
 
 ## Technology stack
-Python 3.12 · FastAPI · SQLite · HTML / CSS / vanilla JavaScript · **Gnani API Platform** (Prisma v3.0 STT, Timbre v3.0 TTS) · pytest (106 tests)
+Python 3.12 · FastAPI · SQLite · HTML / CSS / vanilla JavaScript · **Gnani API Platform** (Prisma v3.0 STT, Timbre v3.0 TTS) · pytest (109 tests)
 
 > **Build status**
 > | Part | Status |
@@ -120,7 +120,7 @@ ASHA-VoiceMate/
       gnani_client.py       shared Gnani auth, errors, retry, one-at-a-time queue
       gnani_stt.py          Gnani Prisma v3.0 speech-to-text (REST)
       gnani_tts.py          Gnani Timbre v3.0 text-to-speech (REST)
-    tests/                  106 tests (rules, agent, database, API, Gnani request format)
+    tests/                  109 tests (rules, agent, database, API, Gnani request format)
   frontend/
     index.html              dashboard layout
     style.css               dark navy / teal design, responsive
@@ -175,7 +175,18 @@ Wait for `Uvicorn running on http://127.0.0.1:8000`, then open **http://localhos
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -v
 ```
-Expected last line: `106 passed`.
+Expected last line: `109 passed`.
+
+## Deploy (free, on Render)
+
+The repo includes `render.yaml`, so Render can set everything up from GitHub. Render gives the app an **HTTPS** address, which browsers require for the microphone.
+
+1. Sign in at **https://render.com** with your GitHub account.
+2. **New + → Blueprint** → select this repository → **Apply**.
+3. When Render asks for **`GNANI_API_KEY`**, paste your Gnani key (it is stored on Render only, never in GitHub).
+4. Wait for the build (about 3–5 minutes), then open the `https://…onrender.com` link in Chrome and allow the microphone.
+
+Free-plan notes: the app sleeps after about 15 minutes without visitors (the first visit then takes about a minute to wake it); saved visits are reset whenever the app restarts; anyone with the link uses your Gnani credits, so share it only with judges.
 
 ## How a visit works
 

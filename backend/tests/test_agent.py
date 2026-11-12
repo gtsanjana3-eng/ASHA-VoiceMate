@@ -41,6 +41,11 @@ def test_hindi_code_mixed():
                  "tt_status": "given", "next_visit_date": "2026-11-16"}
 
 
+@pytest.mark.parametrize("text", ["आईडी बी 101 गर्भवती महिला", "ಐಡಿ ಬಿ 101 ಗರ್ಭಿಣಿ", "आईडी B-101 गर्भवती"])
+def test_id_letter_in_indic_script(text):
+    assert extract_fields(text, REF)[0]["beneficiary_id"] == "B101"
+
+
 def test_hinglish_romanised():
     f, _ = extract_fields("ID B102, pregnant hai, IFA goli nahi le rahi, TT lag gaya, ANC baki hai, agli visit kal", REF)
     assert f["ifa_status"] == "not_taking"

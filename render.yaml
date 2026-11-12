@@ -1,0 +1,18 @@
+# Render Blueprint: deploys ASHA VoiceMate as one free web service.
+# On Render: New + -> Blueprint -> pick this repo. Render will ask you for
+# GNANI_API_KEY (sync: false = you type it on Render; it is never stored in GitHub).
+services:
+  - type: web
+    name: asha-voicemate
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/status
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: GNANI_API_KEY
+        sync: false
+      - key: REQUEST_TIMEOUT_SECONDS
+        value: "30"

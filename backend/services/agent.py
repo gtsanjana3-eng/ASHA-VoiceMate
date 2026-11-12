@@ -315,6 +315,8 @@ def extract_fields(raw_text: str, ref: date | None = None) -> tuple[dict, set]:
     """Returns (fields_found, unclear_field_names). Only fields actually heard are returned."""
     ref = ref or date.today()
     text = words_to_numbers(normalize(raw_text))
+    # The letter "B" spoken in Hindi/Kannada may be transcribed in script: "बी 101", "ಬಿ 205" -> "b101".
+    text = re.sub(r"(?:बी|ಬಿ)\s*-?\s*(?=\d)", "b", text)
     segs = segments(text)
     f: dict = {}
     unclear: set = set()

@@ -20,6 +20,9 @@ data/*
 *.webm
 *.ogg
 
+# Private notes (not part of the submission)
+docs/DEMO_VIDEO_SCRIPT.md
+
 # Editors / tools / OS
 .vscode/
 .idea/

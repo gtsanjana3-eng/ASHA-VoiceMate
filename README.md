@@ -2,6 +2,8 @@
 
 **Voice-first field register for ASHA workers** — Gnani Voice Hackathon, PS1 (Voice Field Register for ASHA Workers).
 
+🔗 **Live demo:** https://asha-voicemate.onrender.com — open in Chrome or Edge and allow the microphone. (Free hosting: if it has been idle, the first load takes about a minute to wake up.)
+
 An ASHA worker records a household visit **by speaking** in English, Hindi or Kannada (code-mixing allowed). ASHA VoiceMate transcribes it with **Gnani Prisma**, extracts a structured visit record, **reads it back with Gnani Timbre**, accepts **spoken corrections**, saves only after a spoken **“yes / haan / ಹೌದು”**, and **immediately speaks a PHC referral** when a predefined danger sign is heard.
 
 ## The problem
